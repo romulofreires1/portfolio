@@ -28,7 +28,7 @@ export const AboutMe = ({ aboutMe }: AboutMeProps) => {
         <div>
           <h2 className={`${roboto.className} mb-12`}>{description}</h2>
         </div>
-        <ul className="flex flex-wrap xl:w-fit gap-3 text-xl mb-10">
+        <ul className="flex flex-wrap justify-center sm:justify-start xl:w-fit gap-3 text-xl mb-10">
           {technologies.map(({ name, backgroundColor, textColor, icon }, index) => (
             <li
               key={name + index}
