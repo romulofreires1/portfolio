@@ -24,7 +24,7 @@ export const Projects = ({ projects }: ProjectsProps) => {
               />
             </Link>
             <span>{name}</span>
-            <div className="bg-galactic-purple rounded-full w-14 h-14 text-center flex justify-center items-center text-3xl absolute bottom-[1.25rem] -right-[1.25rem]">
+            <div className="bg-galactic-purple rounded-full w-12 h-12 text-center flex justify-center items-center text-xl absolute bottom-[1.25rem] -right-[1.25rem]">
               <span>{index + 1}</span>
             </div>
           </li>
