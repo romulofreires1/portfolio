@@ -1,6 +1,8 @@
-# Portfolio Project
+# Portifolio Project
 
-Welcome to my portfolio project! This README provides a step-by-step guide to get you set up and running with the project locally. By following these instructions, you can explore how to utilize modern web technologies like React and Next.js.
+Welcome to my portifolio project! This README provides a step-by-step guide to get you set up and running with the project locally. By following these instructions, you can explore how to utilize modern web technologies like React and Next.js.  
+
+https://portifolio-romulofreires.vercel.app
 
 ## Getting Started
 
@@ -16,13 +18,13 @@ Ensure you have the following installed:
 1. **Clone the Repository**
    To get started, open your terminal and navigate to the directory where you want to clone the repository. Execute the following command:
     ```bash
-    git clone https://github.com/romulofreires1/portfolio.git
+    git clone https://github.com/romulofreires1/portifolio.git
     ```
 
 2. **Navigate to the Project Directory**
    Change into the project directory with:
     ```bash
-    cd portfolio
+    cd portifolio
     ```
 
 3. **Install Dependencies**
@@ -45,4 +47,4 @@ This project leverages some of the most popular frameworks and libraries in web 
 - **Tailwind CSS**: A utility-first CSS framework for rapid UI development.
 - **TypeScript**: A strongly typed programming language that builds on JavaScript, giving you better tooling at any scale.
 
-Enjoy building and customizing your portfolio!
+Enjoy building and customizing your portifolio!
