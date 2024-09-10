@@ -8,11 +8,11 @@ module.exports = {
   theme: {
     extend: {
       transitionProperty: {
-        'height': 'height',
-        'spacing': 'margin, padding',
+        height: 'height',
+        spacing: 'margin, padding',
       },
       transitionDuration: {
-        '400': '400ms',
+        400: '400ms',
       },
       transitionTimingFunction: {
         'in-out': 'cubic-bezier(0.4, 0, 0.2, 1)',
@@ -22,7 +22,6 @@ module.exports = {
         'neon-spring': '#29e0a9',
         'midnight-coal': '#121214',
         'black-velvet': '#09090a',
-
       },
       width: {
         120: '30rem',

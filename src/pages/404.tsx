@@ -17,7 +17,9 @@ const NotFound = () => {
         <h1 className="text-5xl sm:text-7xl font-bold">404</h1>
         <p className="flex flex-col gap-8 md:gap-4 md:text-xl">
           <span>Oops, não conseguimos encontrar essa página!</span>
-          <span>Clique no botão abaixo para ser redirecionado à Página Inicial</span>
+          <span>
+            Clique no botão abaixo para ser redirecionado à Página Inicial
+          </span>
         </p>
         <Link
           href="/"

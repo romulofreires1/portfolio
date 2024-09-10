@@ -8,7 +8,6 @@ export interface Technology {
   textColor: string;
   backgroundColor: string;
   icon: string;
-
 }
 
 export interface AboutMe {

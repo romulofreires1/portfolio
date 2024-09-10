@@ -10,7 +10,7 @@ interface ContatosProps {
   }[];
 }
 
-const Contatos = ({ contacts }: ContatosProps) => {
+const Contacts = ({ contacts }: ContatosProps) => {
   console.log(contacts);
 
   return (
@@ -19,15 +19,21 @@ const Contatos = ({ contacts }: ContatosProps) => {
         <title>Contatos | Rômulo</title>
       </Head>
       <div className="mt-12 md:mt-24 space-y-8 md:space-y-16 px-6 md:px-32">
-        <h1 className="text-5xl md:text-7xl font-bold text-center text-neon-spring">Contatos</h1>
+        <h1 className="text-5xl md:text-7xl font-bold text-center text-neon-spring">
+          Contatos
+        </h1>
         <ul className="table mx-auto space-y-6 md:space-y-8">
           {contacts.map(({ link, name, icon }, idx) => (
-            
             <li key={name + idx}>
-              <div className='flex gap-x-2'>
-                <Image src={icon} width={20} height={20} alt={`ícone ${name}`} />
-                <span className="font-bold">{name}</span>  
-              </div>      
+              <div className="flex gap-x-2">
+                <Image
+                  src={icon}
+                  width={20}
+                  height={20}
+                  alt={`ícone ${name}`}
+                />
+                <span className="font-bold">{name}</span>
+              </div>
               <div className="flex gap-1 md:gap-3 items-center">
                 <a
                   href={link}
@@ -64,4 +70,4 @@ export const getServerSideProps = async () => {
   };
 };
 
-export default Contatos;
+export default Contacts;
