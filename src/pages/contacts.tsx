@@ -1,8 +1,8 @@
 import Head from 'next/head';
-import Link from 'next/link';
 import Image from 'next/image';
+import { GetStaticProps } from 'next';
 
-interface ContatosProps {
+interface ContactsProps {
   contacts: {
     name: string;
     link: string;
@@ -10,8 +10,7 @@ interface ContatosProps {
   }[];
 }
 
-const Contacts = ({ contacts }: ContatosProps) => {
-  console.log(contacts);
+const Contacts = ({ contacts }: ContactsProps) => {
 
   return (
     <>
@@ -60,13 +59,12 @@ const loadContacts = async () => {
   return data;
 };
 
-export const getServerSideProps = async () => {
+export const getStaticProps: GetStaticProps<ContactsProps> = async () => {
   const contacts = await loadContacts();
 
   return {
-    props: {
-      contacts,
-    },
+    props: { contacts },
+    revalidate: 60,
   };
 };
 
