@@ -1,5 +1,7 @@
 import { GetStaticProps } from 'next';
+import { useTranslation } from 'next-i18next';
 import Head from 'next/head';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 interface AboutProps {
   about: {
@@ -11,6 +13,7 @@ interface AboutProps {
 }
 
 const About = ({ about }: AboutProps) => {
+  const { t } = useTranslation('about')
   return (
     <>
       <Head>
@@ -19,7 +22,7 @@ const About = ({ about }: AboutProps) => {
 
       <div className="mt-12 md:mt-24 px-12 md:px-32">
         <h1 className="mb-16 text-5xl md:text-7xl font-bold text-center text-neon-spring">
-          Quem Sou Eu
+          {t('about:title')}
         </h1>
 
         {about.description.pt.split('\\n\\n').map((line, index) => (
@@ -42,13 +45,15 @@ const loadDescription = async () => {
   return about;
 };
 
-export const getStaticProps: GetStaticProps<AboutProps> = async () => {
+export const getStaticProps: GetStaticProps<AboutProps> = async ({ locale }) => {
   const about = await loadDescription();
 
   return {
-    props: { about },
+    props: { ...(await serverSideTranslations(locale as string, ['common', 'about'])), about },
     revalidate: 60,
   };
 };
+
+
 
 export default About;
