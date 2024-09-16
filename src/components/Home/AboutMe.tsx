@@ -28,7 +28,7 @@ export const AboutMe = ({ aboutMe }: AboutMeProps) => {
           </strong>
         </h1>
         <div>
-          <h2 className={`${roboto.className} mb-12`}>{description}</h2>
+          <h2 className={`mb-12 ${roboto.className}`}>{description}</h2>
         </div>
         <ul className="flex flex-wrap justify-center sm:justify-start xl:w-fit gap-3 text-xl mb-10">
           {technologies.map(
