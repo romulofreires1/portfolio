@@ -21,7 +21,7 @@ const About = ({ about }: AboutProps) => {
   const locale = (router.locale || LocalesEnum.PT_BR) as keyof Locales;
 
   useEffect(() => {
-    const currentLocale = router.locale || LocalesEnum.PT_BR; 
+    const currentLocale = router.locale || LocalesEnum.PT_BR;
     if (i18n.language !== currentLocale) {
       i18n.changeLanguage(currentLocale).then(() => {
         setCurrentTitle(t('title'));
@@ -42,13 +42,15 @@ const About = ({ about }: AboutProps) => {
           {currentTitle}
         </h1>
 
-        {(about.description[locale] as string).split('\\n\\n').map((line, index) => (
-          <span key={index}>
-            {line}
-            <br />
-            <br />
-          </span>
-        ))}
+        {(about.description[locale] as string)
+          .split('\\n\\n')
+          .map((line, index) => (
+            <span key={index}>
+              {line}
+              <br />
+              <br />
+            </span>
+          ))}
       </div>
     </>
   );
@@ -62,11 +64,16 @@ const loadDescription = async () => {
   return about;
 };
 
-export const getStaticProps: GetStaticProps<AboutProps> = async ({ locale }) => {
+export const getStaticProps: GetStaticProps<AboutProps> = async ({
+  locale,
+}) => {
   const about = await loadDescription();
 
   return {
-    props: { ...(await serverSideTranslations(locale as string, ['common', 'about'])), about },
+    props: {
+      ...(await serverSideTranslations(locale as string, ['common', 'about'])),
+      about,
+    },
     revalidate: 60,
   };
 };

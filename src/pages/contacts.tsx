@@ -11,7 +11,6 @@ interface ContactsProps {
 }
 
 const Contacts = ({ contacts }: ContactsProps) => {
-
   return (
     <>
       <Head>

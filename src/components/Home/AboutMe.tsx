@@ -5,7 +5,8 @@ import { AboutMe as TAboutMe } from '@/types/Home';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { Locales as LocalesEnum } from '@/constants/locales.enum';
-import { Locales } from '@/types/Common'
+import { Locales } from '@/types/Common';
+import { useEffect, useState } from 'react';
 
 const roboto = Roboto({
   subsets: ['latin'],
@@ -19,10 +20,24 @@ interface AboutMeProps {
 export const AboutMe = ({ aboutMe }: AboutMeProps) => {
   const { title, description, imageContainer, technologies } = aboutMe;
   const { t, i18n } = useTranslation('home');
+  const [iam, setIam] = useState<string>(t('iam'));
+  const [contactMe, setContactMe] = useState<string>(t('contactMe'));
 
   const router = useRouter();
   const locale = (router.locale || LocalesEnum.PT_BR) as keyof Locales;
 
+  useEffect(() => {
+    const currentLocale = router.locale || LocalesEnum.PT_BR;
+    if (i18n.language !== currentLocale) {
+      i18n.changeLanguage(currentLocale).then(() => {
+        setIam(t('iam'));
+        setContactMe(t('contactMe'));
+      });
+    } else {
+      setIam(t('iam'));
+      setContactMe(t('contactMe'));
+    }
+  }, [router.locale, i18n, t]);
 
   return (
     <main className="flex flex-wrap-reverse justify-center items-center gap-10 md:gap-32 py-8 text-lg text-center xl:text-left xl:flex-nowrap xl:justify-between">
@@ -31,7 +46,7 @@ export const AboutMe = ({ aboutMe }: AboutMeProps) => {
           {title.greetingMessage[locale]}
         </h1>
         <h1 className="text-4xl md:text-6xl xl:leading-[5rem]">
-          <span className="mt-2">{t("iam")} </span>
+          <span className="mt-2">{iam} </span>
           <strong className="font-semibold text-galactic-purple">
             {title.name}
           </strong>
@@ -56,7 +71,7 @@ export const AboutMe = ({ aboutMe }: AboutMeProps) => {
           href={'/contacts'}
           className="p-2 g-h-gray-500 w-fit text-xl rounded-lg transition-all hover:bg-opacity-80 border-solid border-2 border-neon-spring hover:bg-neon-spring"
         >
-          Fale Comigo
+          {contactMe}
         </Link>
       </div>
       <div className="relative">

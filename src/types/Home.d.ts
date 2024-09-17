@@ -1,5 +1,5 @@
 import { Locales as LocalesEnum } from '@/constants/locales.enum';
-import { Locales } from '@/types/Common'
+import { Locales } from '@/types/Common';
 export interface Image {
   url: string;
   alt: Locales;

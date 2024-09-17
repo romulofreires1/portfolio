@@ -5,9 +5,9 @@ const LanguageSwitcher = () => {
   const { locale, locales, pathname, query, asPath } = router;
 
   const changeLanguage = (newLocale: string) => {
-    const { pathname, asPath, query } = router
-    router.push({ pathname, query }, asPath, { locale: newLocale })
-  }  
+    const { pathname, asPath, query } = router;
+    router.push({ pathname, query }, asPath, { locale: newLocale });
+  };
 
   return (
     <div>
