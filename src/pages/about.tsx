@@ -4,14 +4,12 @@ import Head from 'next/head';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { Locales } from '@/constants/locales.enum';
+import { Locales } from '@/types/Common';
+import { Locales as LocalesEnum } from '@/constants/locales.enum';
 
 interface AboutProps {
   about: {
-    description: {
-      "pt-BR": Locales;
-      en: Locales;
-    };
+    description: Locales;
   };
 }
 
@@ -20,10 +18,10 @@ const About = ({ about }: AboutProps) => {
   const router = useRouter();
   const [currentTitle, setCurrentTitle] = useState<string>(t('title'));
 
-  const locale = (router.locale || Locales.PT_BR) as keyof typeof about.description;
+  const locale = (router.locale || LocalesEnum.PT_BR) as keyof Locales;
 
   useEffect(() => {
-    const currentLocale = router.locale || Locales.PT_BR; 
+    const currentLocale = router.locale || LocalesEnum.PT_BR; 
     if (i18n.language !== currentLocale) {
       i18n.changeLanguage(currentLocale).then(() => {
         setCurrentTitle(t('title'));
@@ -44,7 +42,7 @@ const About = ({ about }: AboutProps) => {
           {currentTitle}
         </h1>
 
-        {about.description[locale].split('\\n\\n').map((line, index) => (
+        {(about.description[locale] as string).split('\\n\\n').map((line, index) => (
           <span key={index}>
             {line}
             <br />

@@ -1,6 +1,8 @@
+import { Locales as LocalesEnum } from '@/constants/locales.enum';
+import { Locales } from '@/types/Common'
 export interface Image {
   url: string;
-  alt: string;
+  alt: Locales;
 }
 
 export interface Technology {
@@ -12,10 +14,10 @@ export interface Technology {
 
 export interface AboutMe {
   title: {
-    greetingMessage: string;
+    greetingMessage: Locales;
     name: string;
   };
-  description: string;
+  description: Locales;
   technologies: Technology[];
   imageContainer: {
     image: Image;
@@ -23,7 +25,7 @@ export interface AboutMe {
 }
 
 export interface Project {
-  name: string;
+  name: Locales;
   image: Image;
   url: string;
 }
