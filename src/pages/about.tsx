@@ -4,12 +4,13 @@ import Head from 'next/head';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import { Locales } from '@/constants/locales.enum';
 
 interface AboutProps {
   about: {
     description: {
-      pt: string;
-      en: string;
+      "pt-BR": Locales;
+      en: Locales;
     };
   };
 }
@@ -18,8 +19,11 @@ const About = ({ about }: AboutProps) => {
   const { t, i18n } = useTranslation('about');
   const router = useRouter();
   const [currentTitle, setCurrentTitle] = useState<string>(t('title'));
+
+  const locale = (router.locale || Locales.PT_BR) as keyof typeof about.description;
+
   useEffect(() => {
-    const currentLocale = router.locale || 'pt-BR'; 
+    const currentLocale = router.locale || Locales.PT_BR; 
     if (i18n.language !== currentLocale) {
       i18n.changeLanguage(currentLocale).then(() => {
         setCurrentTitle(t('title'));
@@ -40,7 +44,7 @@ const About = ({ about }: AboutProps) => {
           {currentTitle}
         </h1>
 
-        {about.description.pt.split('\\n\\n').map((line, index) => (
+        {about.description[locale].split('\\n\\n').map((line, index) => (
           <span key={index}>
             {line}
             <br />
