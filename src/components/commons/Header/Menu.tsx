@@ -1,3 +1,4 @@
+import useI18nField from '@/hooks/useI18nField';
 import Link from 'next/link';
 
 interface MenuProps {
@@ -6,7 +7,9 @@ interface MenuProps {
 }
 
 export const Menu = ({ isVisible, onClose }: MenuProps) => {
-  // Adicionar uma ref para capturar a altura do header se ela não for fixa
+  const aboutMenuText = useI18nField('about', ['common']);
+  const contactsMenuText = useI18nField('contacts', ['common']);
+
   return (
     <div
       className={`fixed inset-x-0 top-16 h-full bg-black-velvet bg-opacity-40 md:hidden transform ${isVisible ? 'translate-y-0 opacity-100 visible' : '-translate-y-full opacity-0 invisible'} transition-all duration-400 ease-in-out`}
@@ -21,14 +24,14 @@ export const Menu = ({ isVisible, onClose }: MenuProps) => {
           href="/about"
           onClick={onClose}
         >
-          <span>Sobre</span>
+          <span>{aboutMenuText}</span>
         </Link>
         <Link
           className="hover:text-neon-spring"
           href="/contacts"
           onClick={onClose}
         >
-          <span>Contato</span>
+          <span>{contactsMenuText}</span>
         </Link>
       </nav>
     </div>

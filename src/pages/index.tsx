@@ -2,6 +2,7 @@ import { AboutMe } from '@/components/Home/AboutMe';
 import { Projects } from '@/components/Home/Projects';
 import { Project, AboutMe as TAboutMe } from '@/types/Home';
 import { GetStaticProps } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Head from 'next/head';
 
 interface HomeProps {
@@ -40,11 +41,14 @@ const loadHome = async () => {
   return home;
 };
 
-export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+export const getStaticProps: GetStaticProps<HomeProps> = async ({ locale }) => {
   const home = await loadHome();
 
   return {
-    props: { home },
+    props: {
+      ...(await serverSideTranslations(locale as string, ['common', 'home'])),
+      home,
+    },
     revalidate: 60,
   };
 };
