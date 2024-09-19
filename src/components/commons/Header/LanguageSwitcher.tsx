@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 
 const LanguageSwitcher = () => {
   const router = useRouter();
-  const { locale, locales, pathname, query, asPath } = router;
+  const { locale, locales } = router;
 
   const changeLanguage = (newLocale: string) => {
     const { pathname, asPath, query } = router;
