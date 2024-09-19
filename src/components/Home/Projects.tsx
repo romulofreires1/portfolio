@@ -7,16 +7,11 @@ interface ProjectsProps {
   projects: Project[];
 }
 
-const namespaces = ['home', 'common']
-
+const namespaces = ['home', 'common'];
 
 export const Projects = ({ projects }: ProjectsProps) => {
-
-
-
-  const recentProjects = useI18nField('recentProjects', namespaces)
+  const recentProjects = useI18nField('recentProjects', namespaces);
   const locale = useLocale();
-
 
   return (
     <article className="space-y-16 flex flex-col items-center xl:items-start text-center xl:text-left">

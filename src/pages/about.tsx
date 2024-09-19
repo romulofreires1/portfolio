@@ -11,11 +11,10 @@ interface AboutProps {
   };
 }
 
-const namespaces = ['about', 'common']
-
+const namespaces = ['about', 'common'];
 
 const About = ({ about }: AboutProps) => {
-  const title = useI18nField('title', namespaces)
+  const title = useI18nField('title', namespaces);
   const locale = useLocale();
 
   return (

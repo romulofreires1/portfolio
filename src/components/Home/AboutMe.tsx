@@ -14,16 +14,14 @@ interface AboutMeProps {
   aboutMe: TAboutMe;
 }
 
-const namespaces = ['home', 'common']
+const namespaces = ['home', 'common'];
 
 export const AboutMe = ({ aboutMe }: AboutMeProps) => {
   const { title, description, imageContainer, technologies } = aboutMe;
 
-  const iam = useI18nField('iam', namespaces)
-  const contactMe = useI18nField('contactMe', namespaces)
+  const iam = useI18nField('iam', namespaces);
+  const contactMe = useI18nField('contactMe', namespaces);
   const locale = useLocale();
-
-
 
   return (
     <main className="flex flex-wrap-reverse justify-center items-center gap-10 md:gap-32 py-8 text-lg text-center xl:text-left xl:flex-nowrap xl:justify-between">

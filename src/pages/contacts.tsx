@@ -11,10 +11,10 @@ interface ContactsProps {
   }[];
 }
 
-const namespaces = ['contacts', 'common']
+const namespaces = ['contacts', 'common'];
 
 const Contacts = ({ contacts }: ContactsProps) => {
-  const title = useI18nField('title', namespaces)
+  const title = useI18nField('title', namespaces);
   return (
     <>
       <Head>
@@ -62,11 +62,16 @@ const loadContacts = async () => {
   return data;
 };
 
-export const getStaticProps: GetStaticProps<ContactsProps> = async ({ locale}) => {
+export const getStaticProps: GetStaticProps<ContactsProps> = async ({
+  locale,
+}) => {
   const contacts = await loadContacts();
 
   return {
-    props: { ...(await serverSideTranslations(locale as string, namespaces)), contacts },
+    props: {
+      ...(await serverSideTranslations(locale as string, namespaces)),
+      contacts,
+    },
     revalidate: 60,
   };
 };
