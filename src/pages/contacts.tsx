@@ -33,7 +33,7 @@ const Contacts = ({ contacts }: ContactsProps) => {
                   width={0}
                   height={0}
                   alt={`ícone ${name}`}
-                  className='w-6 h-6'
+                  className="w-6 h-6"
                 />
                 <span className="font-bold">{name}</span>
               </div>

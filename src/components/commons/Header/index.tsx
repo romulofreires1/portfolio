@@ -28,7 +28,7 @@ export const Header = () => {
             height={0}
             alt="Logo de Rômulo"
             priority
-            className='w-10 h-10'
+            className="w-10 h-10"
           />
         </Link>
         <LanguageSwitcher />
