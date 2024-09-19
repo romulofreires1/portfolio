@@ -30,9 +30,10 @@ const Contacts = ({ contacts }: ContactsProps) => {
               <div className="flex gap-x-2">
                 <Image
                   src={icon}
-                  width={20}
-                  height={20}
+                  width={0}
+                  height={0}
                   alt={`ícone ${name}`}
+                  className='w-6 h-6'
                 />
                 <span className="font-bold">{name}</span>
               </div>

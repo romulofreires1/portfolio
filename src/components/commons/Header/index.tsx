@@ -24,10 +24,11 @@ export const Header = () => {
         <Link className="hover:scale-110 transition-transform" href="/">
           <Image
             src="/favicon.svg"
-            width={35}
-            height={35}
+            width={0}
+            height={0}
             alt="Logo de Rômulo"
             priority
+            className='w-10 h-10'
           />
         </Link>
         <LanguageSwitcher />
