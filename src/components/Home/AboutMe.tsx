@@ -2,11 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Roboto } from 'next/font/google';
 import { AboutMe as TAboutMe } from '@/types/Home';
-import { useTranslation } from 'next-i18next';
-import { useRouter } from 'next/router';
-import { Locales as LocalesEnum } from '@/constants/locales.enum';
-import { Locales } from '@/types/Common';
-import { useEffect, useState } from 'react';
+import useI18nField from '@/hooks/useI18nField';
+import useLocale from '@/hooks/useLocale';
 
 const roboto = Roboto({
   subsets: ['latin'],
@@ -17,27 +14,16 @@ interface AboutMeProps {
   aboutMe: TAboutMe;
 }
 
+const namespaces = ['home', 'common']
+
 export const AboutMe = ({ aboutMe }: AboutMeProps) => {
   const { title, description, imageContainer, technologies } = aboutMe;
-  const { t, i18n } = useTranslation('home');
-  const [iam, setIam] = useState<string>(t('iam'));
-  const [contactMe, setContactMe] = useState<string>(t('contactMe'));
 
-  const router = useRouter();
-  const locale = (router.locale || LocalesEnum.PT_BR) as keyof Locales;
+  const iam = useI18nField('iam', namespaces)
+  const contactMe = useI18nField('contactMe', namespaces)
+  const locale = useLocale();
 
-  useEffect(() => {
-    const currentLocale = router.locale || LocalesEnum.PT_BR;
-    if (i18n.language !== currentLocale) {
-      i18n.changeLanguage(currentLocale).then(() => {
-        setIam(t('iam'));
-        setContactMe(t('contactMe'));
-      });
-    } else {
-      setIam(t('iam'));
-      setContactMe(t('contactMe'));
-    }
-  }, [router.locale, i18n, t]);
+
 
   return (
     <main className="flex flex-wrap-reverse justify-center items-center gap-10 md:gap-32 py-8 text-lg text-center xl:text-left xl:flex-nowrap xl:justify-between">

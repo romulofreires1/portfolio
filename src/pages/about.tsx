@@ -1,11 +1,9 @@
 import { GetStaticProps } from 'next';
-import { useTranslation } from 'next-i18next';
 import Head from 'next/head';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
 import { Locales } from '@/types/Common';
-import { Locales as LocalesEnum } from '@/constants/locales.enum';
+import useI18nField from '@/hooks/useI18nField';
+import useLocale from '@/hooks/useLocale';
 
 interface AboutProps {
   about: {
@@ -13,33 +11,22 @@ interface AboutProps {
   };
 }
 
+const namespaces = ['about', 'common']
+
+
 const About = ({ about }: AboutProps) => {
-  const { t, i18n } = useTranslation('about');
-  const router = useRouter();
-  const [currentTitle, setCurrentTitle] = useState<string>(t('title'));
-
-  const locale = (router.locale || LocalesEnum.PT_BR) as keyof Locales;
-
-  useEffect(() => {
-    const currentLocale = router.locale || LocalesEnum.PT_BR;
-    if (i18n.language !== currentLocale) {
-      i18n.changeLanguage(currentLocale).then(() => {
-        setCurrentTitle(t('title'));
-      });
-    } else {
-      setCurrentTitle(t('title'));
-    }
-  }, [router.locale, i18n, t]);
+  const title = useI18nField('title', namespaces)
+  const locale = useLocale();
 
   return (
     <>
       <Head>
-        <title>{`${currentTitle} | Rômulo`}</title>
+        <title>{`${title} | Rômulo`}</title>
       </Head>
 
       <div className="mt-12 md:mt-24 px-12 md:px-32">
         <h1 className="mb-16 text-5xl md:text-7xl font-bold text-center text-neon-spring">
-          {currentTitle}
+          {title}
         </h1>
 
         {(about.description[locale] as string)
@@ -71,7 +58,7 @@ export const getStaticProps: GetStaticProps<AboutProps> = async ({
 
   return {
     props: {
-      ...(await serverSideTranslations(locale as string, ['common', 'about'])),
+      ...(await serverSideTranslations(locale as string, namespaces)),
       about,
     },
     revalidate: 60,

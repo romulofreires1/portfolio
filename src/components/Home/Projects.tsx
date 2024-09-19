@@ -1,35 +1,22 @@
 import { Project } from '@/types/Home';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { Locales as LocalesEnum } from '@/constants/locales.enum';
-import { Locales } from '@/types/Common';
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'next-i18next';
+import useI18nField from '@/hooks/useI18nField';
+import useLocale from '@/hooks/useLocale';
 interface ProjectsProps {
   projects: Project[];
 }
 
+const namespaces = ['home', 'common']
+
+
 export const Projects = ({ projects }: ProjectsProps) => {
-  const router = useRouter();
-  const locale = (router.locale || LocalesEnum.PT_BR) as keyof Locales;
 
-  const { t, i18n } = useTranslation('home');
 
-  const [recentProjects, setRecentProjects] = useState<string>(
-    t('recentProjects'),
-  );
 
-  useEffect(() => {
-    const currentLocale = router.locale || LocalesEnum.PT_BR;
-    if (i18n.language !== currentLocale) {
-      i18n.changeLanguage(currentLocale).then(() => {
-        setRecentProjects(t('recentProjects'));
-      });
-    } else {
-      setRecentProjects(t('recentProjects'));
-    }
-  }, [router.locale, i18n, t]);
+  const recentProjects = useI18nField('recentProjects', namespaces)
+  const locale = useLocale();
+
 
   return (
     <article className="space-y-16 flex flex-col items-center xl:items-start text-center xl:text-left">
