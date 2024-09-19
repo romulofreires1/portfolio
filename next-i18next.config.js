@@ -3,7 +3,7 @@ module.exports = {
     locales: ['en', 'pt-BR'],
     defaultLocale: 'en',
   },
-  ns: ['common', 'about', 'home'],
+  ns: ['common', 'about', 'home', 'contacts'],
   defaultNS: 'common',
   localePath: './public/locales',
 };

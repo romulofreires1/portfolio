@@ -1,7 +1,11 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import { GetStaticProps } from 'next';
-
+import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
+import { Locales as LocalesEnum } from '@/constants/locales.enum';
+import { useEffect, useState } from 'react';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 interface ContactsProps {
   contacts: {
     name: string;
@@ -11,14 +15,28 @@ interface ContactsProps {
 }
 
 const Contacts = ({ contacts }: ContactsProps) => {
+  const { t, i18n } = useTranslation('contacts');
+  const router = useRouter();
+  const [currentTitle, setCurrentTitle] = useState<string>(t('title'));
+
+  useEffect(() => {
+    const currentLocale = router.locale || LocalesEnum.PT_BR;
+    if (i18n.language !== currentLocale) {
+      i18n.changeLanguage(currentLocale).then(() => {
+        setCurrentTitle(t('title'));
+      });
+    } else {
+      setCurrentTitle(t('title'));
+    }
+  }, [router.locale, i18n, t]);
   return (
     <>
       <Head>
-        <title>Contatos | Rômulo</title>
+        <title>{`${currentTitle} | Rômulo`}</title>
       </Head>
       <div className="mt-12 md:mt-24 space-y-8 md:space-y-16 px-6 md:px-32">
         <h1 className="text-5xl md:text-7xl font-bold text-center text-neon-spring">
-          Contatos
+          {currentTitle}
         </h1>
         <ul className="table mx-auto space-y-6 md:space-y-8">
           {contacts.map(({ link, name, icon }, idx) => (
@@ -58,11 +76,11 @@ const loadContacts = async () => {
   return data;
 };
 
-export const getStaticProps: GetStaticProps<ContactsProps> = async () => {
+export const getStaticProps: GetStaticProps<ContactsProps> = async ({ locale}) => {
   const contacts = await loadContacts();
 
   return {
-    props: { contacts },
+    props: { ...(await serverSideTranslations(locale as string, ['common', 'contacts'])), contacts },
     revalidate: 60,
   };
 };
