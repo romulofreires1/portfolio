@@ -5,10 +5,14 @@ import { MenuIcon } from '@/components/icons/MenuIcon';
 import { useRouter } from 'next/router';
 import { Menu } from './Menu';
 import LanguageSwitcher from './LanguageSwitcher';
+import useI18nField from '@/hooks/useI18nField';
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter();
+
+  const aboutMenuText = useI18nField('about', ['common']);
+  const contactsMenuText = useI18nField('contacts', ['common']);
 
   const toggleMenu = useCallback(() => {
     setIsMenuOpen(!isMenuOpen);
@@ -42,13 +46,13 @@ export const Header = () => {
           href="/about"
           className={`p-2 rounded-lg ${router.pathname === '/about' ? 'bg-galactic-purple' : 'hover:text-neon-spring'}`}
         >
-          <span>Sobre</span>
+          <span>{aboutMenuText}</span>
         </Link>
         <Link
           href="/contacts"
           className={`p-2 rounded-lg ${router.pathname === '/contacts' ? 'bg-galactic-purple' : 'hover:text-neon-spring'}`}
         >
-          <span>Contatos</span>
+          <span>{contactsMenuText}</span>
         </Link>
       </nav>
       <Menu isVisible={isMenuOpen} onClose={toggleMenu} />

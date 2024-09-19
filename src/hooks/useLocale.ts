@@ -5,7 +5,7 @@ import { Locales } from '@/types/Common';
 function useLocale() {
   const router = useRouter();
 
-  const locale = (router.locale || LocalesEnum.PT_BR) as keyof Locales;
+  const locale = (router.locale || LocalesEnum.EN) as keyof Locales;
 
   return locale;
 }
