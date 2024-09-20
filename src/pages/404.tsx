@@ -22,7 +22,7 @@ const NotFound = () => {
         </p>
         <Link
           href="/"
-          className={`${roboto.className} p-4 bg-h-blue-500 rounded-xl text-black mt-5 md:mt-12 md:text-xl w-fit`}
+          className={`${roboto.className} p-4 bg-h-blue-500 rounded-xl text-blue-600 hover:text-blue-800 underline mt-5 md:mt-12 md:text-xl w-fit`}
         >
           Go to Home Page
         </Link>
