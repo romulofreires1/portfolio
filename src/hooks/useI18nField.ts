@@ -1,5 +1,5 @@
+import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 function useI18nField(fieldName: string, namespaces: string[]) {
   const { t, i18n } = useTranslation(namespaces);
