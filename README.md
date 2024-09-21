@@ -53,6 +53,8 @@ This project leverages some of the most popular frameworks and libraries in web 
 - **Next.js**: A React framework for production which provides Hybrid Static & Server Rendering, and route pre-fetching, amongst other things.
 - **Tailwind CSS**: A utility-first CSS framework for rapid UI development.
 - **TypeScript**: A strongly typed programming language that builds on JavaScript, giving you better tooling at any scale.
+- **i18next**: Management of translation content, and components/hooks to translate your React components.
+
 
 ## Incremental Static Regeneration (ISR)
 
