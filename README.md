@@ -55,7 +55,6 @@ This project leverages some of the most popular frameworks and libraries in web 
 - **TypeScript**: A strongly typed programming language that builds on JavaScript, giving you better tooling at any scale.
 - **i18next**: Management of translation content, and components/hooks to translate your React components.
 
-
 ## Incremental Static Regeneration (ISR)
 
 This project uses ISR to fetch a [JSON gist](https://gist.githubusercontent.com/romulofreires1/1f3ec8357c940943174fcb4a38c3d3d4/raw/portifolio-structure-ptbr.json). This allows key information on the site to be updated without requiring a full deploy. The data is fetched from a GitHub Gist URL, which is then used to populate the content dynamically.

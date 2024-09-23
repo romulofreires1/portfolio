@@ -4,6 +4,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Locales } from '@/types/Common';
 import useI18nField from '@/hooks/useI18nField';
 import useLocale from '@/hooks/useLocale';
+import Title from '@/components/commons/Title';
 
 interface AboutProps {
   about: {
@@ -24,9 +25,7 @@ const About = ({ about }: AboutProps) => {
       </Head>
 
       <div className="mt-12 md:mt-24 px-12 md:px-32">
-        <h1 className="mb-16 text-5xl md:text-7xl font-bold text-center text-neon-spring">
-          {title}
-        </h1>
+        <Title text={title} />
 
         {(about.description[locale] as string)
           .split('\\n\\n')
