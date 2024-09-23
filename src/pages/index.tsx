@@ -1,5 +1,6 @@
 import { AboutMe } from '@/components/Home/AboutMe';
 import { Projects } from '@/components/Home/Projects';
+import useLocale from '@/hooks/useLocale';
 import { Project, AboutMe as TAboutMe } from '@/types/Home';
 import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -14,6 +15,7 @@ interface HomeProps {
 
 const Home = ({ home }: HomeProps) => {
   const { projects, aboutMe } = home;
+  const locale = useLocale();
 
   return (
     <>
@@ -21,7 +23,7 @@ const Home = ({ home }: HomeProps) => {
         <title>Sobre mim | Rômulo</title>
         <meta
           name="description"
-          content="Sou um desenvolvedor Front-end apaixonado por criar interfaces e ajudar outros devs!"
+          content={aboutMe.description[locale]}
         />
       </Head>
       <div className="py-12 px-6 md:px-32 space-y-10 md:space-y-28">
